@@ -1,0 +1,21 @@
+<svg width="360" height="128" viewBox="0 0 360 128" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CartIQ">
+  <defs>
+    <linearGradient id="cartiq-bg-full" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4F46E5"/>
+      <stop offset="1" stop-color="#0EA5A4"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="url(#cartiq-bg-full)"/>
+  <g transform="translate(20,34) scale(3.2)" fill="none" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="9" cy="21" r="1.4" fill="#FFFFFF" stroke="none"/>
+    <circle cx="19" cy="21" r="1.4" fill="#FFFFFF" stroke="none"/>
+    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.02a2 2 0 0 0 2-1.61L22.5 6H6"/>
+  </g>
+  <g transform="translate(90,26)">
+    <path d="M10 0 L13 7 L20 10 L13 13 L10 20 L7 13 L0 10 L7 7 Z" fill="#FF7A45"/>
+    <circle cx="10" cy="10" r="3" fill="#FFFFFF"/>
+  </g>
+
+  <text x="148" y="76" font-family="Rubik, Heebo, Arial, sans-serif" font-size="44" font-weight="700" fill="#0F172A">Cart<tspan fill="#4F46E5">IQ</tspan></text>
+</svg>

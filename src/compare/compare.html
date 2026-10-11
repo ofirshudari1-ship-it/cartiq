@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>CartIQ — Compare</title>
+  <link rel="stylesheet" href="../shared/design-tokens.css" />
+  <link rel="stylesheet" href="compare.css" />
+</head>
+<body>
+  <div class="cartiq-compare-page">
+    <header class="cartiq-compare-header">
+      <img src="../../assets/icons/icon-48.png" alt="" width="32" height="32" />
+      <h1 data-i18n="compare_title">Compare open AliExpress tabs</h1>
+      <button id="refreshBtn" class="cartiq-btn-ghost" data-i18n="compare_refresh">Refresh</button>
+    </header>
+
+    <p id="emptyState" class="cartiq-muted" data-i18n="compare_empty" hidden></p>
+
+    <table id="compareTable" class="cartiq-compare-table" hidden>
+      <thead>
+        <tr>
+          <th></th>
+          <th data-i18n="compare_colTitle">Product</th>
+          <th data-i18n="compare_colPrice">Price</th>
+          <th data-i18n="compare_colStore">Store</th>
+          <th data-i18n="compare_colRating">Rating</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="compareBody"></tbody>
+    </table>
+  </div>
+
+  <script type="module" src="compare.js"></script>
+</body>
+</html>

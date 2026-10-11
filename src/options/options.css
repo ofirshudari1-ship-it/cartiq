@@ -1,0 +1,56 @@
+.cartiq-options-page {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: var(--cartiq-space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--cartiq-space-4);
+}
+
+.cartiq-options-header {
+  display: flex;
+  align-items: center;
+  gap: var(--cartiq-space-3);
+}
+
+h1 { font-size: 18px; margin: 0; }
+h2 { font-size: 14px; margin: 0 0 var(--cartiq-space-2); }
+
+section.cartiq-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cartiq-space-2);
+}
+
+label { font-size: 13px; font-weight: 600; }
+
+input, select {
+  font-family: inherit;
+  font-size: 13px;
+  padding: var(--cartiq-space-2);
+  border-radius: var(--cartiq-radius-sm);
+  border: 1px solid var(--cartiq-border);
+  background: var(--cartiq-surface);
+  color: var(--cartiq-text);
+}
+
+input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--cartiq-secondary);
+  outline-offset: 1px;
+}
+
+.cartiq-muted { color: var(--cartiq-text-muted); font-size: 12px; }
+
+.cartiq-about a { color: var(--cartiq-primary); }
+
+.cartiq-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: var(--cartiq-space-2);
+  font-weight: 400;
+  font-size: 13px;
+}
+
+input[type="range"] { accent-color: var(--cartiq-primary); padding: 0; border: none; }
+input[type="checkbox"] { accent-color: var(--cartiq-primary); width: 16px; height: 16px; }
+input[type="number"] { width: 100px; }

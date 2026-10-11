@@ -1,0 +1,98 @@
+body {
+  width: 340px;
+  min-height: 200px;
+}
+
+.cartiq-header {
+  display: flex;
+  align-items: center;
+  gap: var(--cartiq-space-2);
+  padding: var(--cartiq-space-3) var(--cartiq-space-4);
+  border-bottom: 1px solid var(--cartiq-border);
+}
+
+.cartiq-title { font-weight: 700; font-size: 15px; }
+.cartiq-tagline { font-size: 11px; color: var(--cartiq-text-muted); }
+
+.cartiq-header > div { flex: 1; }
+
+.cartiq-icon-btn { padding: 4px 8px; font-size: 14px; }
+
+.cartiq-content {
+  padding: var(--cartiq-space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--cartiq-space-3);
+}
+
+.cartiq-full-width { width: 100%; }
+
+.cartiq-empty-illustration {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 var(--cartiq-space-2);
+}
+.cartiq-empty-illustration svg { display: block; max-width: 100%; height: auto; }
+
+.cartiq-stats-row {
+  display: flex;
+  gap: var(--cartiq-space-2);
+}
+
+.cartiq-stat { flex: 1; text-align: center; }
+.cartiq-stat-value { font-size: 22px; font-weight: 700; color: var(--cartiq-primary); }
+.cartiq-stat-label { font-size: 11px; color: var(--cartiq-text-muted); }
+
+#duplicatesList { display: flex; flex-direction: column; gap: var(--cartiq-space-2); }
+
+.cartiq-dup-item {
+  border: 1px solid var(--cartiq-border);
+  border-radius: var(--cartiq-radius-md);
+  padding: var(--cartiq-space-2) var(--cartiq-space-3);
+  font-size: 12px;
+}
+
+.cartiq-dup-titles { font-weight: 600; margin-bottom: 4px; }
+.cartiq-dup-advice { color: var(--cartiq-text-muted); }
+
+.cartiq-muted { color: var(--cartiq-text-muted); font-size: 12px; }
+
+.cartiq-inline-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--cartiq-space-2);
+}
+.cartiq-inline-note p { margin: 0; flex: 1; }
+.cartiq-inline-note button { flex-shrink: 0; padding: 6px 10px; font-size: 12px; }
+
+h3 { font-size: 13px; margin: 0 0 var(--cartiq-space-2); }
+
+#aiSummary { font-size: 12px; line-height: 1.5; }
+
+.cartiq-product-title { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+
+#cheaperResults, #trustResult { display: flex; flex-direction: column; gap: var(--cartiq-space-2); }
+
+.cartiq-alt-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--cartiq-border);
+  border-radius: var(--cartiq-radius-md);
+  padding: var(--cartiq-space-2) var(--cartiq-space-3);
+  font-size: 12px;
+  text-decoration: none;
+  color: var(--cartiq-text);
+}
+.cartiq-alt-item:hover { background: var(--cartiq-border); }
+.cartiq-alt-price { font-weight: 700; color: var(--cartiq-success); }
+
+.cartiq-trust-card {
+  border-radius: var(--cartiq-radius-md);
+  padding: var(--cartiq-space-3);
+  font-size: 12px;
+}
+.cartiq-trust-green { background: color-mix(in srgb, var(--cartiq-success) 15%, transparent); }
+.cartiq-trust-yellow { background: color-mix(in srgb, var(--cartiq-warning) 15%, transparent); }
+.cartiq-trust-red { background: color-mix(in srgb, var(--cartiq-error) 15%, transparent); }

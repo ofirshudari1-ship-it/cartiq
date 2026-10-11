@@ -1,0 +1,23 @@
+{
+  "asset": "cartiq-popup-empty-state",
+  "created": "2026-09-29",
+  "purpose": "Onboarding/empty-state illustration for the popup's 'otherState' view (neither on a cart page nor a product page) — integrated as inline SVG in src/popup/popup.html so it stays crisp at popup scale and matches both light and dark themes without separate assets.",
+  "brandSource": "assets/BRAND.md + src/shared/design-tokens.css (local project files, no colors invented)",
+  "renderMethod": "Local SVG source rendered to PNG/WebP with sharp for archival/export use (no generative AI, no credits used). The live popup uses the inline SVG copy embedded directly in popup.html, not these raster files.",
+  "files": {
+    "source": "source/empty-state.svg",
+    "png_1x": "web/empty-state-240x160.png",
+    "webp_1x": "web/empty-state-240x160.webp",
+    "png_2x": "web/empty-state-480x320@2x.png",
+    "webp_2x": "web/empty-state-480x320@2x.webp"
+  },
+  "dimensions": "240x160 (base), popup rendered at 180x120 to fit the 340px-wide popup content area",
+  "decorative": true,
+  "alt": {
+    "en": "(decorative — marked aria-hidden; the adjacent text 'Open your AliExpress cart or a product page to get started' already conveys the meaning) A shopping cart with one item highlighted, next to a magnifying glass and two AI sparkles.",
+    "he": "(דקורטיבי - מסומן aria-hidden; הטקסט הסמוך 'פתחו את עגלת הקניות שלכם...' כבר מעביר את המשמעות) עגלת קניות עם פריט אחד מודגש, לצד זכוכית מגדלת ושני ניצוצות AI."
+  },
+  "contrastCheck": "Illustration carries its own soft brand-gradient blob background (indigo/teal at 14% opacity) so the colored line art keeps enough contrast against both the light surface (#F8FAFC) and the dark surface (#0F172A) without needing separate light/dark variants.",
+  "integration": "Wired into src/popup/popup.html (#otherState, above the existing i18n paragraph) and src/popup/popup.css (.cartiq-empty-illustration). This is a local file edit only — no git repo exists for this project, so nothing was versioned or released.",
+  "notes": "Colors are exact hex values from assets/BRAND.md (#4F46E5 primary, #0EA5A4 secondary, #FF7A45 accent). No AliExpress branding used."
+}

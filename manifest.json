@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_extName__",
+  "short_name": "CartIQ",
+  "description": "__MSG_extDescription__",
+  "version": "0.2.4",
+  "default_locale": "en",
+  "icons": {
+    "16": "assets/icons/icon-16.png",
+    "32": "assets/icons/icon-32.png",
+    "48": "assets/icons/icon-48.png",
+    "128": "assets/icons/icon-128.png"
+  },
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "assets/icons/icon-16.png",
+      "32": "assets/icons/icon-32.png",
+      "48": "assets/icons/icon-48.png",
+      "128": "assets/icons/icon-128.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background/background.js",
+    "type": "module"
+  },
+  "options_page": "src/options/options.html",
+  "permissions": ["storage", "activeTab", "scripting", "tabs", "alarms", "notifications"],
+  "host_permissions": [
+    "https://*.aliexpress.com/*",
+    "https://api.anthropic.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://*.aliexpress.com/p/shoppingcart/*"],
+      "js": ["src/content/cart-scanner.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://*.aliexpress.com/item/*.html*"],
+      "js": ["src/content/product-scanner.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

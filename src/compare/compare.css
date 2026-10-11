@@ -1,0 +1,28 @@
+.cartiq-compare-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--cartiq-space-6);
+}
+
+.cartiq-compare-header {
+  display: flex;
+  align-items: center;
+  gap: var(--cartiq-space-3);
+  margin-bottom: var(--cartiq-space-4);
+}
+.cartiq-compare-header h1 { font-size: 18px; margin: 0; flex: 1; }
+
+.cartiq-compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.cartiq-compare-table th, .cartiq-compare-table td {
+  text-align: start;
+  padding: var(--cartiq-space-2) var(--cartiq-space-3);
+  border-bottom: 1px solid var(--cartiq-border);
+}
+.cartiq-compare-table img { width: 40px; height: 40px; object-fit: cover; border-radius: var(--cartiq-radius-sm); }
+.cartiq-compare-table tr.cartiq-cheapest { background: color-mix(in srgb, var(--cartiq-success) 10%, transparent); }
+.cartiq-compare-table .cartiq-price { font-weight: 700; }
+.cartiq-compare-table button { font-size: 12px; padding: 6px 10px; margin-inline-end: 4px; }

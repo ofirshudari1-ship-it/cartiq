@@ -1,0 +1,19 @@
+{
+  "asset": "cartiq-hero",
+  "created": "2026-09-29",
+  "purpose": "Marketing hero illustration for site/landing-page.html — not yet wired into the page; ready to embed in the hero section (see PROJECT.md open items).",
+  "brandSource": "assets/BRAND.md + src/shared/design-tokens.css (local project files, no colors invented)",
+  "renderMethod": "Local SVG source rendered to PNG/WebP with sharp (no generative AI, no credits used)",
+  "files": {
+    "source": "source/hero.svg",
+    "png": "web/hero-1600x900.png",
+    "webp": "web/hero-1600x900.webp"
+  },
+  "dimensions": "1600x900",
+  "alt": {
+    "en": "Illustration of the CartIQ AI layer scanning an AliExpress-style shopping cart: one item flagged as a likely duplicate, a cheaper alternative found at -18%, a green seller-trust check, and a compare-open-tabs panel.",
+    "he": "המחשה של שכבת ה-AI של CartIQ סורקת עגלת קניות בסגנון AliExpress: פריט אחד מסומן ככפילות אפשרית, אלטרנטיבה זולה יותר שנמצאה במחיר -18%, בדיקת אמינות מוכר ירוקה, ופאנל השוואת לשוניות פתוחות."
+  },
+  "contrastCheck": "Text/UI mockup elements inside the white panel use dark-on-light and white-on-dark(#0F172A) pairings from the existing design tokens, all already validated at >=4.5:1 in the live product; the illustration carries no free-floating body text of its own that needs a separate check.",
+  "notes": "Colors are exact hex values from assets/BRAND.md (#4F46E5 primary, #0EA5A4 secondary, #FF7A45 accent, #16A34A success, #F59E0B warning). No AliExpress logo/trademark used, consistent with the project's naming decision to avoid the AliExpress name/mark."
+}

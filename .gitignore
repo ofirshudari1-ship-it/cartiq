@@ -1,0 +1,14 @@
+*.zip
+node_modules/
+build/staging/
+.DS_Store
+Thumbs.db
+.env
+.env.*
+SPEC.md
+CHANGELOG.md
+PROJECT.md
+RELEASE-CHECKLIST.md
+DELETIONS.md
+
+.claude/

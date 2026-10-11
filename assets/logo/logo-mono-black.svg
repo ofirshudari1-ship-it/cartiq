@@ -1,0 +1,10 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CartIQ mark, black">
+  <g transform="translate(20,34) scale(3.2)" fill="none" stroke="#0F172A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="9" cy="21" r="1.4" fill="#0F172A" stroke="none"/>
+    <circle cx="19" cy="21" r="1.4" fill="#0F172A" stroke="none"/>
+    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.02a2 2 0 0 0 2-1.61L22.5 6H6"/>
+  </g>
+  <g transform="translate(90,26)">
+    <path d="M10 0 L13 7 L20 10 L13 13 L10 20 L7 13 L0 10 L7 7 Z" fill="#0F172A"/>
+  </g>
+</svg>
