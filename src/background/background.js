@@ -272,6 +272,12 @@ async function analyzeSellerTrust(product) {
 
 // ---- Phase 5: opt-in price/duplicate watch on open cart tabs ----
 
+// Scraped titles are third-party text: flatten whitespace/control chars and
+// cap the length before showing them in a system notification.
+function safeNotifText(text) {
+  return String(text ?? "").replace(/[\u0000-\u001f\u007f\u200e\u200f\u202a-\u202e]+/g, " ").trim().slice(0, 60);
+}
+
 async function checkCartTabsForChanges() {
   const tabs = await chrome.tabs.query({ url: "https://*.aliexpress.com/p/shoppingcart/*" });
   if (tabs.length === 0) return;
@@ -304,7 +310,7 @@ async function checkCartTabsForChanges() {
         title: "CartIQ",
         message:
           priceDrops.length === 1
-            ? `Price dropped for "${priceDrops[0].title}"`
+            ? `Price dropped for "${safeNotifText(priceDrops[0].title)}"`
             : `Price dropped for ${priceDrops.length} items in your cart`,
       });
     }
@@ -358,7 +364,7 @@ async function checkProductTabsAndTargets() {
         type: "basic",
         iconUrl: chrome.runtime.getURL("assets/icons/icon-128.png"),
         title: "CartIQ",
-        message: `${target.title || item.title}: ${item.price.toFixed(2)} (target ${target.price.toFixed(2)})`,
+        message: `${safeNotifText(target.title || item.title)}: ${item.price.toFixed(2)} (target ${target.price.toFixed(2)})`,
       });
       await setTarget(item.productId, null);
     }
