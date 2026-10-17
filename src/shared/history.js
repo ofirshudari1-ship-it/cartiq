@@ -70,7 +70,13 @@ export async function recordSnapshot(items) {
 }
 
 export function toCsv(items) {
-  const esc = (v) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+  // Titles/store names come from third-party pages: neutralize spreadsheet
+  // formula prefixes and embedded newlines before quoting (CSV injection).
+  const esc = (v) => {
+    let text = String(v ?? "").replace(/[\r\n]+/g, " ");
+    if (/^[=+\-@\t]/.test(text)) text = "'" + text;
+    return `"${text.replace(/"/g, '""')}"`;
+  };
   const rows = [["title", "price", "quantity", "seller", "url"]];
   items.forEach((i) => rows.push([i.title, i.price ?? "", i.quantity ?? 1, i.storeName ?? "", i.url]));
   return "\uFEFF" + rows.map((r) => r.map(esc).join(",")).join("\n");
