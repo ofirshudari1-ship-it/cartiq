@@ -40,6 +40,22 @@
         </div>
       </div>
 
+      <div class="cartiq-card cartiq-stat" id="totalCard" hidden>
+        <div class="cartiq-stat-value"><bdi id="cartTotal">0</bdi></div>
+        <div class="cartiq-stat-label" data-i18n="popup_cartTotal">Cart total (before shipping)</div>
+      </div>
+
+      <section id="changesSection" hidden>
+        <h3 data-i18n="popup_priceChanges">Price changes since last scan</h3>
+        <div id="changesList"></div>
+      </section>
+
+      <section id="sellersSection" hidden>
+        <h3 data-i18n="popup_sellers">By seller</h3>
+        <div id="sellersList"></div>
+        <p class="cartiq-muted" data-i18n="popup_sellersTip">Tip: several items from one seller can share shipping or a store coupon.</p>
+      </section>
+
       <p id="emptyCartMsg" class="cartiq-muted" hidden data-i18n="popup_emptyCart"></p>
 
       <section id="duplicatesSection" hidden>
@@ -54,6 +70,7 @@
         <button id="openSettingsFromResultsBtn" class="cartiq-btn-ghost" data-i18n="popup_settings">Settings</button>
       </div>
 
+      <button id="exportBtn" class="cartiq-btn-ghost cartiq-full-width" data-i18n="popup_exportCsv" hidden>Copy cart as CSV</button>
       <button id="rescanBtn" class="cartiq-btn-ghost cartiq-full-width" data-i18n="popup_scanButton">Scan my cart</button>
     </div>
 
@@ -68,6 +85,17 @@
         <div id="productTitle" class="cartiq-product-title"></div>
         <div id="productMeta" class="cartiq-muted"></div>
       </div>
+      <section id="historyCard" class="cartiq-card" hidden>
+        <h3 data-i18n="popup_priceHistory">Price history</h3>
+        <div id="historyChart" class="cartiq-chart"></div>
+        <p id="historyVerdict" class="cartiq-verdict"></p>
+        <label class="cartiq-muted" for="targetInput" data-i18n="popup_targetLabel">Alert me when the price is at or below</label>
+        <div class="cartiq-inline-note">
+          <input id="targetInput" type="number" min="0" step="0.01" inputmode="decimal" />
+          <button id="targetSaveBtn" class="cartiq-btn-ghost" data-i18n="popup_targetSave">Save</button>
+        </div>
+        <p id="targetMsg" class="cartiq-muted" hidden></p>
+      </section>
       <p id="productScanFailedMsg" class="cartiq-muted" hidden data-i18n="popup_productScanFailed"></p>
       <button id="findCheaperBtn" class="cartiq-btn-primary cartiq-full-width" data-i18n="popup_findCheaper">Find cheaper alternatives</button>
       <div id="cheaperResults"></div>

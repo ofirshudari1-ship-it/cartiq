@@ -37,6 +37,12 @@ CartIQ לא נמצא בחנות של Chrome, ולכן ההתקנה ידנית ו
 3. "בדוק אמינות מוכר" משלב נתונים שכבר בעמוד עם ניתוח AI קצר של טקסט
    מהעמוד, ומחזיר ירוק/צהוב/אדום.
 
+### היסטוריית מחירים ויעד מחיר
+1. בכל סריקת עגלה או פתיחת עמוד מוצר CartIQ שומר מקומית את המחיר.
+2. בעמוד מוצר תראו גרף, ופסיקה אם המחיר נמוך, גבוה או בטווח הרגיל מבין מה שנרשם. ההיסטוריה נבנית רק מהביקורים שלכם.
+3. אפשר להגדיר מחיר יעד; עם מעקב מחירים מופעל והעגלה/המוצר פתוחים בלשונית תקבלו התראה.
+4. בעגלה: סכום כולל (לפני משלוח), פירוט לפי מוכר והעתקה כ-CSV.
+
 ## דרישות
 - Google Chrome (או דפדפן מבוסס Chromium) עם תמיכה ב-Manifest V3.
 - מפתח Claude API אישי (מ-[console.anthropic.com](https://console.anthropic.com))
@@ -84,6 +90,14 @@ the CartIQ icon. "Find cheaper alternatives" searches within AliExpress
 only (a background tab that closes itself) for up to 5 cheaper matches.
 "Check seller trust" combines on-page signals with a short AI read of
 page text into a green/yellow/red verdict.
+
+### Price history and target price
+Every cart scan or product page visit stores the price locally. On a
+product page you get a chart and a verdict (low / high / usual range) based
+only on what CartIQ has recorded from your own visits. Set a target price
+and, with the price watch on and the product or cart open in a tab, you get
+a notification. The cart view adds a total (before shipping), a per-seller
+breakdown and "Copy cart as CSV".
 
 ### Requirements
 - Chrome (or a Chromium-based browser) with Manifest V3 support.

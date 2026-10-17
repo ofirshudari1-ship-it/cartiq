@@ -54,7 +54,7 @@ Shopping
   the background search-and-close flow.
 - `alarms`: run the opt-in, user-enabled price-drop check on a timer.
 - `notifications`: show a local notification when that price-drop check
-  finds a lower price on an already-open cart tab.
+  finds a lower price, or a user-set target price is reached, on an already-open cart or product tab.
 - `host_permissions` (`*.aliexpress.com`): read cart/product/search page
   contents on the user's request (or via the opt-in price watch).
 - `host_permissions` (`api.anthropic.com`): send a cart/product summary for

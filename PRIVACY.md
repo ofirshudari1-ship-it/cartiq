@@ -1,6 +1,6 @@
 # CartIQ — Privacy Policy / מדיניות פרטיות
 
-_Last updated: 2026-09-21 (v0.2.3)_
+_Last updated: 2026-10-17 (v0.3.1)_
 
 ## Single purpose
 CartIQ exists for one purpose only: helping you review your own AliExpress
@@ -54,6 +54,13 @@ anywhere, even to the AI, for this specific feature.
 - If price-drop watch is enabled, a small snapshot of your last-seen cart
   prices per open tab is kept locally to detect changes; it is
   overwritten on each check and never sent anywhere.
+- Price history: each time you scan your cart or open a product page,
+  CartIQ saves the product id, title and price (up to 40 price points for
+  up to 300 products) in `chrome.storage.local` to draw price charts and
+  detect changes. Optional target prices you set are stored the same way.
+  Nothing from this history is sent anywhere, including to the AI. You can
+  erase it by removing the extension or clearing its site data.
+- "Copy cart as CSV" copies to your clipboard only when you click it.
 - Scan/compare results are not persisted beyond the popup/compare view
   session.
 
@@ -98,3 +105,9 @@ Chrome מקומית. הבדיקה הזו כולה על המכשיר שלכם —
 **איפה נשמר מידע:** מפתח ה-API, שפה, ערכת נושא, והגדרות התוסף נשמרים רק
 ב-`chrome.storage.local`. אם מעקב המחירים מופעל, נשמר מקומית תמונת מצב
 קטנה של מחירים אחרונים לכל לשונית פתוחה, נדרסת בכל בדיקה.
+
+**היסטוריית מחירים:** בכל סריקת עגלה או פתיחת עמוד מוצר CartIQ שומר
+מקומית את מזהה המוצר, הכותרת והמחיר (עד 40 נקודות מחיר ל-300 מוצרים
+לכל היותר) לצורך גרף ושינויי מחיר. גם מחירי יעד שהגדרתם נשמרים כך. שום
+דבר מההיסטוריה לא נשלח לשום מקום, גם לא ל-AI. אפשר למחוק אותה בהסרת
+התוסף או בניקוי נתוני האתר שלו. "העתק כ-CSV" מעתיק ללוח רק בלחיצה שלכם.

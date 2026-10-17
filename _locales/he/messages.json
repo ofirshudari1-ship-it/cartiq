@@ -1,56 +1,254 @@
 {
-  "extName": { "message": "CartIQ — הסוכן החכם לעגלת AliExpress" },
-  "extDescription": { "message": "סורק את עגלת ה-AliExpress שלך ולשוניות פתוחות, מאתר כפילויות ואלטרנטיבות זולות יותר, ומדרג אמינות מוכרים עם AI." },
-  "popup_title": { "message": "CartIQ" },
-  "popup_tagline": { "message": "העגלה החכמה שלך ב-AliExpress" },
-  "popup_scanButton": { "message": "סרוק את העגלה שלי" },
-  "popup_scanning": { "message": "סורק את העגלה..." },
-  "popup_analyzing": { "message": "מנתח עם בינה מלאכותית..." },
-  "popup_notOnCart": { "message": "פתחו את עגלת ה-AliExpress שלכם או עמוד מוצר כדי להתחיל." },
-  "popup_openCart": { "message": "פתח עגלת AliExpress" },
-  "popup_compareTabs": { "message": "השוואת לשוניות פתוחות" },
-  "popup_findCheaper": { "message": "מצא אלטרנטיבות זולות יותר" },
-  "popup_checkTrust": { "message": "בדוק אמינות מוכר" },
-  "popup_emptyCart": { "message": "העגלה שלכם נראית ריקה — אין עדיין מה להשוות." },
-  "popup_productScanFailed": { "message": "לא הצלחנו לקרוא את פרטי המוצר הזה. נסו לרענן את העמוד ולפתוח את הפופאפ שוב." },
-  "popup_noPriceDetected": { "message": "לא זוהה מחיר למוצר הזה, אז חיפוש לא יהיה אמין." },
-  "popup_searchFailed": { "message": "החיפוש לא הסתיים בזמן. נסו שוב בעוד רגע." },
-  "popup_timeout": { "message": "הבקשה ל-AI ארכה יותר מדי זמן ובוטלה. נסו שוב." },
-  "popup_searchingAlternatives": { "message": "מחפש ב-AliExpress מחיר טוב יותר..." },
-  "popup_itemsFound": { "message": "נמצאו $COUNT$ פריטים", "placeholders": { "count": { "content": "$1" } } },
-  "popup_duplicatesFound": { "message": "$COUNT$ כפילויות אפשריות", "placeholders": { "count": { "content": "$1" } } },
-  "popup_recommendations": { "message": "המלצות" },
-  "popup_settings": { "message": "הגדרות" },
-  "popup_needsApiKey": { "message": "הוסיפו מפתח Claude API בהגדרות כדי להפעיל ניתוח AI." },
-  "popup_error": { "message": "משהו השתבש. נסו לסרוק שוב." },
-  "options_title": { "message": "הגדרות CartIQ" },
-  "options_apiKeyLabel": { "message": "מפתח Claude API" },
-  "options_apiKeyHelp": { "message": "המפתח נשמר רק על המכשיר שלכם (chrome.storage.local) ונשלח רק ל-api.anthropic.com לצורך ניתוח העגלה. CartIQ לעולם לא שולח את המפתח או נתוני העגלה לשום מקום אחר." },
-  "options_apiKeyPlaceholder": { "message": "sk-ant-..." },
-  "options_save": { "message": "שמור" },
-  "options_saved": { "message": "נשמר" },
-  "options_language": { "message": "שפה" },
-  "options_theme": { "message": "ערכת נושא" },
-  "options_theme_system": { "message": "לפי המערכת" },
-  "options_theme_light": { "message": "בהיר" },
-  "options_theme_dark": { "message": "כהה" },
-  "options_privacyLink": { "message": "מדיניות פרטיות" },
-  "options_eulaLink": { "message": "הסכם רישיון (EULA)" },
-  "options_about": { "message": "אודות CartIQ" },
-  "options_detectionTitle": { "message": "זיהוי כפילויות" },
-  "options_similarityLabel": { "message": "רגישות זיהוי כפילויות" },
-  "options_similarityHelp": { "message": "נמוך = מסמן רק כותרות כמעט זהות. גבוה = מסמן גם פריטים דומים באופן רופף יותר." },
-  "options_watchTitle": { "message": "מעקב ירידות מחיר" },
-  "options_watchEnable": { "message": "התרע לי על ירידות מחיר בלשוניות עגלה פתוחות" },
-  "options_watchInterval": { "message": "בדוק כל (דקות)" },
-  "options_watchHelp": { "message": "בודק רק כאשר לשונית עגלת AliExpress פתוחה בפועל בדפדפן — CartIQ לא יכול לבדוק את העגלה ברקע." },
-  "compare_title": { "message": "השוואת לשוניות AliExpress פתוחות" },
-  "compare_refresh": { "message": "רענן" },
-  "compare_empty": { "message": "לא נמצאו לשוניות מוצר פתוחות של AliExpress. פתחו כמה עמודי מוצר ולחצו רענן." },
-  "compare_colTitle": { "message": "מוצר" },
-  "compare_colPrice": { "message": "מחיר" },
-  "compare_colStore": { "message": "חנות" },
-  "compare_colRating": { "message": "דירוג" },
-  "compare_focusTab": { "message": "פתח לשונית" },
-  "compare_noCheaperFound": { "message": "לא נמצאה אלטרנטיבה זולה יותר בחיפוש AliExpress." }
+  "extName": {
+    "message": "CartIQ — הסוכן החכם לעגלת AliExpress"
+  },
+  "extDescription": {
+    "message": "סורק את עגלת ה-AliExpress שלך ולשוניות פתוחות, מאתר כפילויות ואלטרנטיבות זולות יותר, ומדרג אמינות מוכרים עם AI."
+  },
+  "popup_title": {
+    "message": "CartIQ"
+  },
+  "popup_tagline": {
+    "message": "העגלה החכמה שלך ב-AliExpress"
+  },
+  "popup_scanButton": {
+    "message": "סרוק את העגלה שלי"
+  },
+  "popup_scanning": {
+    "message": "סורק את העגלה..."
+  },
+  "popup_analyzing": {
+    "message": "מנתח עם בינה מלאכותית..."
+  },
+  "popup_notOnCart": {
+    "message": "פתחו את עגלת ה-AliExpress שלכם או עמוד מוצר כדי להתחיל."
+  },
+  "popup_openCart": {
+    "message": "פתח עגלת AliExpress"
+  },
+  "popup_compareTabs": {
+    "message": "השוואת לשוניות פתוחות"
+  },
+  "popup_findCheaper": {
+    "message": "מצא אלטרנטיבות זולות יותר"
+  },
+  "popup_checkTrust": {
+    "message": "בדוק אמינות מוכר"
+  },
+  "popup_emptyCart": {
+    "message": "העגלה שלכם נראית ריקה — אין עדיין מה להשוות."
+  },
+  "popup_productScanFailed": {
+    "message": "לא הצלחנו לקרוא את פרטי המוצר הזה. נסו לרענן את העמוד ולפתוח את הפופאפ שוב."
+  },
+  "popup_noPriceDetected": {
+    "message": "לא זוהה מחיר למוצר הזה, אז חיפוש לא יהיה אמין."
+  },
+  "popup_searchFailed": {
+    "message": "החיפוש לא הסתיים בזמן. נסו שוב בעוד רגע."
+  },
+  "popup_timeout": {
+    "message": "הבקשה ל-AI ארכה יותר מדי זמן ובוטלה. נסו שוב."
+  },
+  "popup_searchingAlternatives": {
+    "message": "מחפש ב-AliExpress מחיר טוב יותר..."
+  },
+  "popup_itemsFound": {
+    "message": "נמצאו $COUNT$ פריטים",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "popup_duplicatesFound": {
+    "message": "$COUNT$ כפילויות אפשריות",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "popup_recommendations": {
+    "message": "המלצות"
+  },
+  "popup_settings": {
+    "message": "הגדרות"
+  },
+  "popup_needsApiKey": {
+    "message": "הוסיפו מפתח Claude API בהגדרות כדי להפעיל ניתוח AI."
+  },
+  "popup_error": {
+    "message": "משהו השתבש. נסו לסרוק שוב."
+  },
+  "options_title": {
+    "message": "הגדרות CartIQ"
+  },
+  "options_apiKeyLabel": {
+    "message": "מפתח Claude API"
+  },
+  "options_apiKeyHelp": {
+    "message": "המפתח נשמר רק על המכשיר שלכם (chrome.storage.local) ונשלח רק ל-api.anthropic.com לצורך ניתוח העגלה. CartIQ לעולם לא שולח את המפתח או נתוני העגלה לשום מקום אחר."
+  },
+  "options_apiKeyPlaceholder": {
+    "message": "sk-ant-..."
+  },
+  "options_save": {
+    "message": "שמור"
+  },
+  "options_saved": {
+    "message": "נשמר"
+  },
+  "options_language": {
+    "message": "שפה"
+  },
+  "options_theme": {
+    "message": "ערכת נושא"
+  },
+  "options_theme_system": {
+    "message": "לפי המערכת"
+  },
+  "options_theme_light": {
+    "message": "בהיר"
+  },
+  "options_theme_dark": {
+    "message": "כהה"
+  },
+  "options_privacyLink": {
+    "message": "מדיניות פרטיות"
+  },
+  "options_eulaLink": {
+    "message": "הסכם רישיון (EULA)"
+  },
+  "options_about": {
+    "message": "אודות CartIQ"
+  },
+  "options_detectionTitle": {
+    "message": "זיהוי כפילויות"
+  },
+  "options_similarityLabel": {
+    "message": "רגישות זיהוי כפילויות"
+  },
+  "options_similarityHelp": {
+    "message": "נמוך = מסמן רק כותרות כמעט זהות. גבוה = מסמן גם פריטים דומים באופן רופף יותר."
+  },
+  "options_watchTitle": {
+    "message": "מעקב ירידות מחיר"
+  },
+  "options_watchEnable": {
+    "message": "התרע לי על ירידות מחיר בלשוניות עגלה פתוחות"
+  },
+  "options_watchInterval": {
+    "message": "בדוק כל (דקות)"
+  },
+  "options_watchHelp": {
+    "message": "בודק רק כאשר לשונית עגלת AliExpress פתוחה בפועל בדפדפן — CartIQ לא יכול לבדוק את העגלה ברקע."
+  },
+  "compare_title": {
+    "message": "השוואת לשוניות AliExpress פתוחות"
+  },
+  "compare_refresh": {
+    "message": "רענן"
+  },
+  "compare_empty": {
+    "message": "לא נמצאו לשוניות מוצר פתוחות של AliExpress. פתחו כמה עמודי מוצר ולחצו רענן."
+  },
+  "compare_colTitle": {
+    "message": "מוצר"
+  },
+  "compare_colPrice": {
+    "message": "מחיר"
+  },
+  "compare_colStore": {
+    "message": "חנות"
+  },
+  "compare_colRating": {
+    "message": "דירוג"
+  },
+  "compare_focusTab": {
+    "message": "פתח לשונית"
+  },
+  "compare_noCheaperFound": {
+    "message": "לא נמצאה אלטרנטיבה זולה יותר בחיפוש AliExpress."
+  },
+  "popup_cartTotal": {
+    "message": "סכום העגלה (לפני משלוח)"
+  },
+  "popup_priceChanges": {
+    "message": "שינויי מחיר מאז הסריקה הקודמת"
+  },
+  "popup_sellers": {
+    "message": "לפי מוכר"
+  },
+  "popup_sellersTip": {
+    "message": "טיפ: כמה פריטים מאותו מוכר יכולים לחלוק משלוח או קופון חנות."
+  },
+  "popup_exportCsv": {
+    "message": "העתק עגלה כ-CSV"
+  },
+  "popup_copied": {
+    "message": "הועתק ללוח"
+  },
+  "popup_historyRange": {
+    "message": "הנמוך ביותר $LOW$, הגבוה ביותר $HIGH$",
+    "placeholders": {
+      "low": {
+        "content": "$1"
+      },
+      "high": {
+        "content": "$2"
+      }
+    }
+  },
+  "popup_priceHistory": {
+    "message": "היסטוריית מחיר"
+  },
+  "popup_historyNew": {
+    "message": "זו הפעם הראשונה ש-CartIQ רואה את המחיר. בדקו שוב מאוחר יותר כדי לבנות היסטוריה."
+  },
+  "popup_verdict_low": {
+    "message": "המחיר הנמוך ביותר שנראה (טווח $LOW$ – $HIGH$). זמן טוב לקנות.",
+    "placeholders": {
+      "low": {
+        "content": "$1"
+      },
+      "high": {
+        "content": "$2"
+      }
+    }
+  },
+  "popup_verdict_high": {
+    "message": "המחיר הגבוה ביותר שנראה (טווח $LOW$ – $HIGH$). כדאי לשקול להמתין.",
+    "placeholders": {
+      "low": {
+        "content": "$1"
+      },
+      "high": {
+        "content": "$2"
+      }
+    }
+  },
+  "popup_verdict_fair": {
+    "message": "בטווח הרגיל ($LOW$ – $HIGH$).",
+    "placeholders": {
+      "low": {
+        "content": "$1"
+      },
+      "high": {
+        "content": "$2"
+      }
+    }
+  },
+  "popup_targetLabel": {
+    "message": "התראה כשהמחיר שווה או נמוך מ-"
+  },
+  "popup_targetSave": {
+    "message": "שמור"
+  },
+  "popup_targetSaved": {
+    "message": "נשמר. הפעילו מעקב מחירים בהגדרות והשאירו את המוצר או העגלה פתוחים בלשונית."
+  },
+  "popup_targetCleared": {
+    "message": "היעד הוסר."
+  }
 }

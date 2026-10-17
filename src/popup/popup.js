@@ -1,5 +1,7 @@
 import { initI18n, t } from "../shared/i18n.js";
 import { applyTheme } from "../shared/theme.js";
+import { getPoints, getTargets, priceVerdict, setTarget, sparkline } from "../shared/history-chart.js";
+import { cartTotal, groupBySeller, recordSnapshot, toCsv } from "../shared/history.js";
 import { findDuplicateGroups, DEFAULT_SIMILARITY_THRESHOLD } from "../shared/duplicates.js";
 
 const PRODUCT_URL_RE = /\/item\/\d+\.html/;
@@ -115,6 +117,52 @@ function renderDuplicates(items, duplicateGroups) {
   }
 }
 
+function row(text, valueText, cls) {
+  const div = document.createElement("div");
+  div.className = "cartiq-alt-item" + (cls ? " " + cls : "");
+  const left = document.createElement("span");
+  left.textContent = text;
+  div.appendChild(left);
+  const right = document.createElement("span");
+  right.className = "cartiq-alt-price";
+  right.appendChild(bdiNode(valueText));
+  div.appendChild(right);
+  return div;
+}
+
+function renderSummary(items, changes) {
+  const total = cartTotal(items);
+  document.getElementById("totalCard").hidden = total === 0;
+  document.getElementById("cartTotal").textContent = total.toFixed(2);
+
+  const sellers = groupBySeller(items).filter((g) => g.storeName);
+  const sellersSection = document.getElementById("sellersSection");
+  const sellersList = document.getElementById("sellersList");
+  sellersList.replaceChildren();
+  sellersSection.hidden = sellers.length < 2 && !sellers.some((g) => g.items.length > 1);
+  sellers.forEach((g) =>
+    sellersList.appendChild(row(`${g.storeName} (${g.items.length})`, g.subtotal.toFixed(2)))
+  );
+
+  const changesSection = document.getElementById("changesSection");
+  const changesList = document.getElementById("changesList");
+  changesList.replaceChildren();
+  changesSection.hidden = changes.length === 0;
+  changes.forEach((c) => {
+    const arrow = c.to < c.from ? "▼" : "▲";
+    const el = row(c.title, `${arrow} ${c.from.toFixed(2)} → ${c.to.toFixed(2)}`);
+    el.title = t("popup_historyRange", [c.low.toFixed(2), c.high.toFixed(2)]);
+    changesList.appendChild(el);
+  });
+
+  const exportBtn = document.getElementById("exportBtn");
+  exportBtn.hidden = items.length === 0;
+  exportBtn.onclick = async () => {
+    await navigator.clipboard.writeText(toCsv(items));
+    exportBtn.textContent = t("popup_copied");
+  };
+}
+
 async function renderAiSummary(items, duplicateGroups, tabId) {
   const aiSummaryEl = document.getElementById("aiSummary");
   const needsKeyEl = document.getElementById("needsApiKeyMsg");
@@ -167,6 +215,13 @@ async function runCartScan(tab) {
   const threshold = await getSimilarityThreshold();
   const duplicateGroups = findDuplicateGroups(scanResult.items, threshold);
   renderDuplicates(scanResult.items, duplicateGroups);
+  let changes = [];
+  try {
+    changes = await recordSnapshot(scanResult.items);
+  } catch {
+    // history is a bonus; never block the scan on storage errors
+  }
+  renderSummary(scanResult.items, changes);
   showPanel("resultsState");
 
   document.getElementById("loadingLabel").textContent = t("popup_analyzing");
@@ -174,6 +229,45 @@ async function runCartScan(tab) {
 }
 
 // ---- Product flow ----
+
+async function renderHistory(product) {
+  const card = document.getElementById("historyCard");
+  if (typeof product.price !== "number" || !product.productId) {
+    card.hidden = true;
+    return;
+  }
+  try {
+    await recordSnapshot([{ ...product, quantity: 1 }]);
+    const points = await getPoints(product.productId);
+    document.getElementById("historyChart").replaceChildren(sparkline(points));
+    const verdict = priceVerdict(points, product.price);
+    const verdictEl = document.getElementById("historyVerdict");
+    verdictEl.textContent =
+      verdict.key === "new"
+        ? t("popup_historyNew")
+        : t(`popup_verdict_${verdict.key}`, [verdict.low.toFixed(2), verdict.high.toFixed(2)]);
+    verdictEl.dataset.verdict = verdict.key;
+
+    const input = document.getElementById("targetInput");
+    const msg = document.getElementById("targetMsg");
+    const targets = await getTargets();
+    input.value = targets[product.productId]?.price ?? "";
+    document.getElementById("targetSaveBtn").onclick = async () => {
+      const value = parseFloat(input.value);
+      if (Number.isFinite(value) && value > 0) {
+        await setTarget(product.productId, { price: value, title: product.title, url: product.url });
+        msg.textContent = t("popup_targetSaved");
+      } else {
+        await setTarget(product.productId, null);
+        msg.textContent = t("popup_targetCleared");
+      }
+      msg.hidden = false;
+    };
+    card.hidden = false;
+  } catch {
+    card.hidden = true;
+  }
+}
 
 // Numbers/currency go inside <bdi> so they render correctly even when this
 // popup is in RTL (Hebrew) mode - see STANDARDS.md §11.6 on bidi text. Store
@@ -279,6 +373,8 @@ async function initProductPage(tab) {
 
   scanFailedMsg.hidden = true;
   renderProductMeta(product);
+
+  await renderHistory(product);
 
   findCheaperBtn.onclick = () =>
     runWithButtonGuard(findCheaperBtn, async () => {

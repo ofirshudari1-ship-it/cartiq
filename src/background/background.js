@@ -1,3 +1,5 @@
+import { getTargets, setTarget } from "../shared/history-chart.js";
+import { recordSnapshot } from "../shared/history.js";
 import { buildSearchUrl, normalizeTitleForSearch } from "../shared/aliexpress.js";
 
 const CLAUDE_MODEL = "claude-haiku-4-5-20251001";
@@ -308,6 +310,7 @@ async function checkCartTabsForChanges() {
     }
 
     await chrome.storage.local.set({ [snapshotKey]: scan.items });
+    await recordSnapshot(scan.items).catch(() => {});
   }
 }
 
@@ -319,9 +322,53 @@ async function syncWatchAlarm() {
   }
 }
 
+function askTab(tabId, type) {
+  return new Promise((resolve) => {
+    chrome.tabs.sendMessage(tabId, { type }, (response) => {
+      resolve(chrome.runtime.lastError ? null : response);
+    });
+  });
+}
+
+// Open product pages feed the price history too, and any saved target price
+// that has been reached triggers one notification (then the target is cleared).
+async function checkProductTabsAndTargets() {
+  const found = [];
+  const productTabs = await chrome.tabs.query({ url: "https://*.aliexpress.com/item/*" });
+  for (const tab of productTabs) {
+    const scan = await askTab(tab.id, "CARTIQ_PRODUCT_SCAN_REQUEST");
+    if (scan?.ok && scan.product?.productId && typeof scan.product.price === "number") {
+      found.push({ ...scan.product, quantity: 1 });
+    }
+  }
+  const cartTabs = await chrome.tabs.query({ url: "https://*.aliexpress.com/p/shoppingcart/*" });
+  for (const tab of cartTabs) {
+    const scan = await askTab(tab.id, "CARTIQ_SCAN_REQUEST");
+    if (scan?.ok) found.push(...scan.items);
+  }
+  if (found.length === 0) return;
+
+  await recordSnapshot(found).catch(() => {});
+
+  const targets = await getTargets();
+  for (const item of found) {
+    const target = targets[item.productId];
+    if (target && typeof item.price === "number" && item.price <= target.price) {
+      chrome.notifications.create(`cartiq-target-${item.productId}-${Date.now()}`, {
+        type: "basic",
+        iconUrl: chrome.runtime.getURL("assets/icons/icon-128.png"),
+        title: "CartIQ",
+        message: `${target.title || item.title}: ${item.price.toFixed(2)} (target ${target.price.toFixed(2)})`,
+      });
+      await setTarget(item.productId, null);
+    }
+  }
+}
+
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === PRICE_WATCH_ALARM) {
     checkCartTabsForChanges();
+    checkProductTabsAndTargets();
   }
 });
 

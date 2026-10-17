@@ -96,3 +96,9 @@ h3 { font-size: 13px; margin: 0 0 var(--cartiq-space-2); }
 .cartiq-trust-green { background: color-mix(in srgb, var(--cartiq-success) 15%, transparent); }
 .cartiq-trust-yellow { background: color-mix(in srgb, var(--cartiq-warning) 15%, transparent); }
 .cartiq-trust-red { background: color-mix(in srgb, var(--cartiq-error) 15%, transparent); }
+
+.cartiq-chart { color: var(--cartiq-primary); }
+.cartiq-verdict { font-size: 12px; font-weight: 600; margin: var(--cartiq-space-2) 0; }
+.cartiq-verdict[data-verdict="low"] { color: var(--cartiq-success); }
+.cartiq-verdict[data-verdict="high"] { color: var(--cartiq-error); }
+#targetInput { flex: 1; min-width: 0; padding: 6px 8px; border: 1px solid var(--cartiq-border); border-radius: var(--cartiq-radius-md); background: transparent; color: inherit; }
